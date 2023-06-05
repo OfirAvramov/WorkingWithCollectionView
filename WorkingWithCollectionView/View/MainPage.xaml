@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Models="clr-namespace:BindingToObject.Models"
+    xmlns:ViewModel="View"
     xmlns:this="clr-namespace:WorkingWithCollectionView"
     x:DataType="this:MainPage">
 
@@ -17,7 +18,31 @@
             HeightRequest="40"
             Text="טען תלמידים"
             WidthRequest="120" />
+
+        <CollectionView EmptyView="אין נתונים" ItemsSource="{Binding Students}"
+                        SelectedItem="{Binding Student}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="12" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Models:Student">
+                    <Grid RowDefinitions="3" ColumnDefinitions="2">
+                        <Image Grid.Column="0" Grid.RowSpan="3" Source="{Binding Image}" Aspect="AspectFill"/>
+                        <Label Text="{Binding Name}" Grid.Column="1" Grid.Row="0"/>
+                        <Label Text="{Binding BirthDate,StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" Grid.Row="1"/>
+                        <Label Text="{Binding Age}" Grid.Row="2" Grid.Column="1"/>
+                    </Grid>
+                </DataTemplate>
+                
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
+                        
         
+        <Grid RowDefinitions="2">
+            
+        </Grid>
     </VerticalStackLayout>
 
 

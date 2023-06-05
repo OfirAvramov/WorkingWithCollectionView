@@ -1,12 +1,13 @@
 ﻿using BindingToObject.Models;
 using System.Collections.ObjectModel;
 
-namespace WorkingWithCollectionView;
+
+namespace WorkingWithCollectionView.View;
 
 public partial class MainPage : ContentPage
 {
     //אוסף התלמידים
-    public ObservableCollection<Student> Students { get; set; }
+    
 
     #region כדי שהמסך יתעדכן כתוצאה מעדכון נתון עלינו להפעיל את אירוע בכל שינוי ערך שלו. לכן עלינו ליצור שדות מגבה
    
@@ -20,16 +21,12 @@ public partial class MainPage : ContentPage
 
     public MainPage()
     {
-        //נגדיר רשימה ריקה
-        Students = new ObservableCollection<Student>();
-        //נאתחל את התלמיד הבודד לריק
-        Student = new() { Image="dotnet_bot.svg", Name="ברירת מחדל",BirthDate=new DateTime()};
        
         //נקשר את הדף שלנו לאובייקט המכיל את הקוד שלו
         this.BindingContext = this;
+
         InitializeComponent();
-       
-	}
+    }
 
     /// <summary>
     /// פעולה הטוענת את נתוני התלמידים 
