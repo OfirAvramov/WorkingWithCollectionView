@@ -23,7 +23,8 @@ namespace WorkingWithCollectionView.ViewModels
         public ICommand AddStuCommand { get; private set; }
 
         private string currentName;
-        public string CurrentName { get => Student.Name; set { if (name != value) { name = value; OnPropertyChanged(); } } }
+        //needs to review by me
+        public string CurrentName { get => Student.Name; set { if (currentName != value) { currentName = value; OnPropertyChanged(); } } }
 
         DateTime date;
         public DateTime CurrentDate { get { return date; } set { if (date != value) { date = value; OnPropertyChanged(); } } }
