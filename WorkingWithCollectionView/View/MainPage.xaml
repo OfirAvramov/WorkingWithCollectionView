@@ -42,7 +42,7 @@
                          Grid.Row="2"
                             Grid.Column="0"
                          Placeholder="Enter Name"
-                         Text="{Binding Name}" />
+                         Text="{Binding CurrentName}" />
                 <DatePicker Date="{Binding CurrentDate}"
                         Grid.Row="2"
                                     Grid.Column="1"/>

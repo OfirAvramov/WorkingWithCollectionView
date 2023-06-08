@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using static Java.Util.Jar.Attributes;
+
 
 namespace WorkingWithCollectionView.ViewModels
 {
@@ -21,7 +21,9 @@ namespace WorkingWithCollectionView.ViewModels
         public ICommand RefreshCommand { get; private set; }
 
         public ICommand AddStuCommand { get; private set; }
-        public string CurrentName { get { return ; } set { if (name != value) { name = value; OnPropertyChanged(); } } }
+
+        private string currentName;
+        public string CurrentName { get => Student.Name; set { if (name != value) { name = value; OnPropertyChanged(); } } }
 
         DateTime date;
         public DateTime CurrentDate { get { return date; } set { if (date != value) { date = value; OnPropertyChanged(); } } }
@@ -41,7 +43,7 @@ namespace WorkingWithCollectionView.ViewModels
 
             LoadDataCommand = new Command(LoadStudents);
             ClearDataCommand = new Command(Students.Clear);
-            AddStuCommand = new Command(() => Students.Add(new Student() { BirthDate = CurrentDate, Image = $"{CurrentName}.jpg", Name = CurrentName }));
+            AddStuCommand = new Command(() => Students.Add(new Student() { BirthDate = CurrentDate, Image = $"{Student.Name}.jpg", Name =Student.Name }));
             OnPropertyChanged("Students");
         }
 
