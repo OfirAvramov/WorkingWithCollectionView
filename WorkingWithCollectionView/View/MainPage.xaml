@@ -4,25 +4,23 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Models="clr-namespace:BindingToObject.Models"
-    xmlns:ViewModel="clr-namespace:WorkingWithCollectionView.ViewModel"
+    xmlns:ViewModel="clr-namespace:WorkingWithCollectionView.ViewModels"
     x:DataType="ViewModel:MainPageViewModel"
    >
-
-    <VerticalStackLayout BindingContext="{Binding Student}">
+    <ScrollView>
+    <VerticalStackLayout Spacing="6">
 
         <Button
             Margin="20"
             BorderWidth="3"
-            Clicked="Button_Clicked"
+            Command="{Binding LoadDataCommand}"
             HeightRequest="40"
             Text="טען תלמידים"
             WidthRequest="120" />
 
-        <CollectionView EmptyView="אין נתונים" ItemsSource="{Binding Students}"
+        <CollectionView IsVisible="True" ItemsSource="{Binding Students}"
                         SelectedItem="{Binding Student}">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="12" Orientation="Vertical" />
-            </CollectionView.ItemsLayout>
+            
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Models:Student">
@@ -40,9 +38,32 @@
                         
         
         <Grid RowDefinitions="2">
-            
-        </Grid>
+                <Entry
+                         Grid.Row="2"
+                            Grid.Column="0"
+                         Placeholder="Enter Name"
+                         Text="{Binding Name}" />
+                <DatePicker Date="{Binding CurrentDate}"
+                        Grid.Row="2"
+                                    Grid.Column="1"/>
+                <Button Text="Submit" Command="{Binding AddStuCommand}"
+                                 Grid.Row="2"
+                            Grid.Column="2"/>
+                <Button
+            Margin="15"
+            Command="{Binding LoadDataCommand}"
+            HeightRequest="40"
+            Text="טען נתונים"
+            WidthRequest="100" />
+                <Button
+            Grid.Column="1"
+            Margin="15"
+            Command="{Binding ClearDataCommand}"
+            HeightRequest="40"
+            Text="מחק נתונים"
+            WidthRequest="100" />
+            </Grid>
     </VerticalStackLayout>
-
+    </ScrollView>
 
 </ContentPage>
